@@ -16,6 +16,11 @@ export default {
       required: true,
       type: Object,
     },
+
+    ownProps: {
+      required: false,
+      type: Object,
+    },
   },
 
   data: ctx => ({
@@ -34,8 +39,8 @@ export default {
 
   render() {
     const nodes = this.$scopedSlots.default({
-      ...this.mapDispatchToProps(this.store.dispatch),
-      ...this.mapStateToProps(this.state),
+      ...this.mapDispatchToProps(this.store.dispatch, this.ownProps),
+      ...this.mapStateToProps(this.state, this.ownProps),
     })
     if (Array.isArray(nodes)) {
       return nodes[0]
