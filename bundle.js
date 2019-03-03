@@ -23,6 +23,11 @@ var index = {
     store: {
       required: true,
       type: Object
+    },
+
+    ownProps: {
+      required: false,
+      type: Object
     }
   },
 
@@ -43,7 +48,7 @@ var index = {
     this.unsubscribe();
   },
   render: function render() {
-    var nodes = this.$scopedSlots.default(_extends({}, this.mapDispatchToProps(this.store.dispatch), this.mapStateToProps(this.state)));
+    var nodes = this.$scopedSlots.default(_extends({}, this.mapDispatchToProps(this.store.dispatch)(this.ownProps), this.mapStateToProps(this.state)(this.ownProps)));
     if (Array.isArray(nodes)) {
       return nodes[0];
     } else {
